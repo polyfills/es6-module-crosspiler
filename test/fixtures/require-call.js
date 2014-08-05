@@ -1,0 +1,2 @@
+
+require.call('asdf', 'asdf')
