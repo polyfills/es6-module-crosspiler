@@ -206,6 +206,10 @@ Removes all the `export` statements.
 
 ### CommonJS require()s
 
+#### .requires[]
+
+Get the raw AST `require()` nodes.
+
 #### .renameRequires()
 
 Renames all the `require()` calls based on `.rename()`.
