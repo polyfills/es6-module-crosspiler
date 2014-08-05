@@ -128,10 +128,12 @@ describe('Build Exports', function () {
     var context = vm.createContext()
     vm.runInThisContext(vmExports, context)
     vm.runInThisContext(result.code, context)
-    vm.runInThisContext('if (exports.default() !== "a") throw new Error()', context)
+    // these should be evaluated before we access the default
     vm.runInThisContext('if (a() !== "a") throw new Error()', context)
     vm.runInThisContext('if (o.prop1() !== "a") throw new Error()', context)
     vm.runInThisContext('if (o.prop2() !== "a") throw new Error()', context)
+    // and the default itself
+    vm.runInThisContext('if (exports.default() !== "a") throw new Error()', context)
   })
 
   it('export-multiple', function () {
