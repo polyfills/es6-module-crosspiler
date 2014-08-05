@@ -118,6 +118,22 @@ describe('Build Exports', function () {
     vm.runInThisContext('if (exports.default !== 1) throw new Error()', context)
   })
 
+  it('export-default-expr', function () {
+    var ast = read('export-default-expr')
+    var m = Module(ast)
+    m.buildExports()
+    m.removeExports()
+    var result = recast.print(m.ast)
+    assert(!~result.code.indexOf('export default'))
+    var context = vm.createContext()
+    vm.runInThisContext(vmExports, context)
+    vm.runInThisContext(result.code, context)
+    vm.runInThisContext('if (exports.default() !== "a") throw new Error()', context)
+    vm.runInThisContext('if (a() !== "a") throw new Error()', context)
+    vm.runInThisContext('if (o.prop1() !== "a") throw new Error()', context)
+    vm.runInThisContext('if (o.prop2() !== "a") throw new Error()', context)
+  })
+
   it('export-multiple', function () {
     var ast = read('export-multiple')
     var m = Module(ast)
