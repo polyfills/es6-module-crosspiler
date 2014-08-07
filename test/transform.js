@@ -42,4 +42,15 @@ describe('.transform()', function () {
     vm.runInThisContext(result.code, context)
     vm.runInThisContext('if (typeof exports.default !== "function") throw new Error()')
   })
+
+  it('export-default-string', function () {
+    var ast = read('export-default-string')
+    var m = Module(ast)
+    m.transform()
+    var result = recast.print(m.ast)
+    var context = vm.createContext()
+    vm.runInThisContext(vmExports, context)
+    vm.runInThisContext(result.code, context)
+    vm.runInThisContext('if (exports.default !== "LOL") throw new Error()')
+  })
 })
