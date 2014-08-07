@@ -14,9 +14,7 @@ vmExports = 'var exports = {}'
 vmRequire = 'function require() { return {} }'
 
 read = function read(name) {
-  return recast.parse(fixture(name), {
-    esprima: esprima
-  })
+  return Module.parse(fixture(name))
 }
 
 fixture = function fixture(name) {
