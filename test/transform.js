@@ -69,4 +69,38 @@ describe('.transform()', function () {
     vm.runInThisContext('function require() { return function domify(){} }', context)
     vm.runInThisContext(result.code, context)
   })
+
+  it('domify renamed', function () {
+    var ast = read('domify')
+    var m = Module(ast)
+    m.rename('domify@1.2.2', 'component/domify@1.2.2')
+    m.set('domify@1.2.2', {
+      type: 'commonjs',
+      default: false,
+    })
+    m.transform()
+    var result = recast.print(m.ast)
+    assert(~result.code.indexOf('require("component/domify@1.2.2")'))
+    assert(~result.code.indexOf('domify('))
+    var context = vm.createContext()
+    vm.runInThisContext('function require() { return function domify(){} }', context)
+    vm.runInThisContext(result.code, context)
+  })
+
+  it('domify renamed again', function () {
+    var ast = read('domify')
+    var m = Module(ast)
+    m.rename('domify@1.2.2', 'component/domify@1.2.2')
+    m.set('component/domify@1.2.2', {
+      type: 'commonjs',
+      default: false,
+    })
+    m.transform()
+    var result = recast.print(m.ast)
+    assert(~result.code.indexOf('require("component/domify@1.2.2")'))
+    assert(~result.code.indexOf('domify('))
+    var context = vm.createContext()
+    vm.runInThisContext('function require() { return function domify(){} }', context)
+    vm.runInThisContext(result.code, context)
+  })
 })
