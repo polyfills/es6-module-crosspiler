@@ -31,6 +31,8 @@ describe('.infer()', function () {
   it('export-default', function () {
     var mod = Module.infer(fixture('export-default'))
     assert(mod.default)
+    var mod = Module.infer(fixture('export-default'), true)
+    assert(mod.default)
   })
 })
 
