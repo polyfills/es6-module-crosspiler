@@ -76,7 +76,7 @@ describe('Build Imports', function () {
     var result = recast.print(m.ast)
     assert(!~result.code.indexOf('import'))
     assert(~result.code.indexOf('var __$mod_b = require("b");'))
-    assert(~result.code.indexOf('__$mod_b.a'))
+    assert(~result.code.indexOf('__$mod_b.default'))
     assert(!~result.code.indexOf('(a)'))
     var context = vm.createContext()
     vm.runInThisContext(vmRequire, context)

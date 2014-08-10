@@ -20,7 +20,7 @@ describe('.transform()', function () {
     var result = recast.print(m.ast)
     assert(!~result.code.indexOf('return x'))
     assert(!~result.code.indexOf('return y'))
-    assert(~result.code.indexOf('__$mod_y.x'))
+    assert(~result.code.indexOf('__$mod_y.default'))
     assert(~result.code.indexOf('__$mod_r.y'))
     var context = vm.createContext()
     vm.runInThisContext(vmExports, context)
@@ -52,5 +52,21 @@ describe('.transform()', function () {
     vm.runInThisContext(vmExports, context)
     vm.runInThisContext(result.code, context)
     vm.runInThisContext('if (exports.default !== "LOL") throw new Error()')
+  })
+
+  it('domify', function () {
+    var ast = read('domify')
+    var m = Module(ast)
+    m.set('domify@1.2.2', {
+      type: 'commonjs',
+      default: false,
+    })
+    m.transform()
+    var result = recast.print(m.ast)
+    assert(~result.code.indexOf('require("domify@1.2.2")'))
+    assert(~result.code.indexOf('domify('))
+    var context = vm.createContext()
+    vm.runInThisContext('function require() { return function domify(){} }', context)
+    vm.runInThisContext(result.code, context)
   })
 })
