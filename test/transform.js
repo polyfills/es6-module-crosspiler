@@ -2,9 +2,8 @@
 describe('.transform()', function () {
   it('export-bindings', function () {
     var ast = read('export-bindings')
-    var m = Module(ast)
-    m.transform()
-    var result = recast.print(m.ast)
+    ast = Module.transform(ast)
+    var result = recast.print(ast)
     var context = vm.createContext()
     vm.runInThisContext(vmExports, context)
     vm.runInThisContext(result.code, context)
