@@ -1,5 +1,29 @@
 
 describe('.transform()', function () {
+  it('export-default-function-declaration', function () {
+    var ast = read('export-default-function-declaration')
+    ast = Module.transform(ast)
+    var result = recast.print(ast)
+    assert(!~result.code.indexOf('var laugh'))
+    var context = vm.createContext()
+    vm.runInThisContext(vmExports, context)
+    vm.runInThisContext(result.code, context)
+    vm.runInThisContext('if (typeof exports.default !== "function") throw new Error()', context)
+    vm.runInThisContext('if (exports.default.name !== "laugh") throw new Error()', context)
+  })
+
+  it('export-function-declaration', function () {
+    var ast = read('export-function-declaration')
+    ast = Module.transform(ast)
+    var result = recast.print(ast)
+    assert(!~result.code.indexOf('var laugh'))
+    var context = vm.createContext()
+    vm.runInThisContext(vmExports, context)
+    vm.runInThisContext(result.code, context)
+    vm.runInThisContext('if (typeof exports.laugh !== "function") throw new Error()', context)
+    vm.runInThisContext('if (exports.laugh.name !== "laugh") throw new Error()', context)
+  })
+
   it('export-bindings', function () {
     var ast = read('export-bindings')
     ast = Module.transform(ast)
