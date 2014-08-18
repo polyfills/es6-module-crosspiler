@@ -126,4 +126,23 @@ describe('.transform()', function () {
     vm.runInThisContext('function require() { return function domify(){} }', context)
     vm.runInThisContext(result.code, context)
   })
+
+  it('require-invoke with cjs', function () {
+    var m = Module(read('require-invoke'))
+    m.set('debug', {
+      type: 'commonjs'
+    })
+    var result = recast.print(m.transform())
+    assert.equal("var debug = module.exports = require('debug')('something')", result.code.trim())
+  })
+
+  it('require-invoke with es6 module w/ export default', function () {
+    var m = Module(read('require-invoke'))
+    m.set('debug', {
+      type: 'module',
+      default: true
+    })
+    var result = recast.print(m.transform())
+    assert(~result.code.trim().indexOf(').default('))
+  })
 })
