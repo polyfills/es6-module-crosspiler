@@ -2,9 +2,13 @@
 # es6-module-crosspiler
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+[![Build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
+[![Dependency Status][david-image]][david-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
 [![Gittip][gittip-image]][gittip-url]
+
 
 ES6 module crosspiler is an ES6 module transpiler that supports both
 ES6 modules as well as CommonJS modules,
@@ -56,7 +60,7 @@ function fn() {
 This transpiler also assumes that all modules are ES6 modules
 that do not `export default` unless specified otherwise.
 
-## Differences between ES6-module-transpiler
+## Differences between es6-module-crosspiler
 
 This transpiler is lower-level, meaning it does not have a concept of a container or resolver.
 It does not expect modules to be retrieved from the file system
@@ -220,11 +224,19 @@ Visits every `require()` call and adds `.default`
 if the `require()`d module is an ES6 module.
 You should execute this before converting `import`s to `require()`s.
 
-[npm-image]: https://img.shields.io/npm/v/es6-module-crosspiler.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/es6-module-crosspiler.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/es6-module-crosspiler
-[travis-image]: https://img.shields.io/travis/polyfills/es6-module-crosspiler.svg?style=flat
+[github-tag]: http://img.shields.io/github/tag/polyfills/es6-module-crosspiler.svg?style=flat-square
+[github-url]: https://github.com/polyfills/es6-module-crosspiler/tags
+[travis-image]: https://img.shields.io/travis/polyfills/es6-module-crosspiler.svg?style=flat-square
 [travis-url]: https://travis-ci.org/polyfills/es6-module-crosspiler
-[coveralls-image]: https://img.shields.io/coveralls/polyfills/es6-module-crosspiler.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/polyfills/es6-module-crosspiler.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/polyfills/es6-module-crosspiler?branch=master
-[gittip-image]: https://img.shields.io/gittip/jonathanong.svg?style=flat
+[david-image]: http://img.shields.io/david/polyfills/es6-module-crosspiler.svg?style=flat-square
+[david-url]: https://david-dm.org/polyfills/es6-module-crosspiler
+[license-image]: http://img.shields.io/npm/l/es6-module-crosspiler.svg?style=flat-square
+[license-url]: LICENSE
+[downloads-image]: http://img.shields.io/npm/dm/es6-module-crosspiler.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/es6-module-crosspiler
+[gittip-image]: https://img.shields.io/gittip/jonathanong.svg?style=flat-square
 [gittip-url]: https://www.gittip.com/jonathanong/
