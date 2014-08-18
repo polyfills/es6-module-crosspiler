@@ -16,11 +16,26 @@ var Module = require('..')
 
 {
   profile.enabled = true
-  profile('beginning transform')
+  profile('beginning transform without source map')
   var ast = Module.parse(mocha)
   profile('parsed AST')
   ast = Module.transform(ast)
   profile('transformed AST')
   recast.print(ast)
+  profile('stringified AST')
+}
+
+{
+  profile.enabled = true
+  profile('beginning transform with source map')
+  var ast = Module.parse(mocha, {
+    sourceFileName: 'mocha.js'
+  })
+  profile('parsed AST')
+  ast = Module.transform(ast)
+  profile('transformed AST')
+  recast.print(ast, {
+    sourceMapName: 'mocha.js'
+  })
   profile('stringified AST')
 }
