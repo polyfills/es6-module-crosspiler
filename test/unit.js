@@ -275,3 +275,17 @@ describe('.dependenciesOf', function () {
     assert.deepEqual(['y'], deps)
   })
 })
+
+describe('.inspect()', function () {
+  it('import-as', function () {
+    var ast = read('import-as')
+    var mod = Module(ast)
+    var json = mod.inspect()
+    assert.deepEqual([
+      'type',
+      'default',
+      'dependencies',
+      'renames'
+    ], Object.keys(json))
+  })
+})
