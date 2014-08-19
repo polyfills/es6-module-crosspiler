@@ -99,6 +99,16 @@ console.log(result.map)
 
 ## API
 
+### Convenience Methods
+
+#### ast = Module.transform(ast, [options])
+
+Transform a module recast-style.
+
+#### var names = Module.dependenciesOf(ast || module)
+
+Get all the dependency names.
+
 ### Initialization and Metadata
 
 #### var module = new Module(ast, [options])

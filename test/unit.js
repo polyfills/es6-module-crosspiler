@@ -243,3 +243,35 @@ describe('.defaultifyRequires()', function () {
     assert.equal('var x = require("y").default', result.code.trim())
   })
 })
+
+describe('.dependenciesOf', function () {
+  it('import-as', function () {
+    var ast = read('import-as')
+    var deps = Module.dependenciesOf(ast)
+    assert.deepEqual(['c'], deps)
+  })
+
+  it('import-bare', function () {
+    var ast = read('import-bare')
+    var deps = Module.dependenciesOf(ast)
+    assert.deepEqual(['./something'], deps)
+  })
+
+  it('import-some', function () {
+    var ast = read('import-some')
+    var deps = Module.dependenciesOf(ast)
+    assert.deepEqual(['c'], deps)
+  })
+
+  it('import-multiple', function () {
+    var ast = read('import-multiple')
+    var deps = Module.dependenciesOf(ast)
+    assert.deepEqual(['a', 'b', 'd'], deps)
+  })
+
+  it('require-var', function () {
+    var ast = read('require-var')
+    var deps = Module.dependenciesOf(ast)
+    assert.deepEqual(['y'], deps)
+  })
+})
