@@ -27,15 +27,6 @@ describe('.default', function () {
   })
 })
 
-describe('.infer()', function () {
-  it('export-default', function () {
-    var mod = Module.infer(fixture('export-default'))
-    assert(mod.default)
-    var mod = Module.infer(fixture('export-default'), true)
-    assert(mod.default)
-  })
-})
-
 describe('.renameImports()', function () {
   it('import-bare', function () {
     var ast = read('import-bare')
