@@ -1,7 +1,7 @@
 {
   "name": "es6-module-crosspiler",
   "description": "An ES6 and CommonJS cross-compatible transpiler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Jonathan Ong",
     "email": "me@jongleberry.com",
