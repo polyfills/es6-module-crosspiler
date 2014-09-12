@@ -11,6 +11,24 @@ describe('.type', function () {
     var m = Module(ast)
     assert('module', m.type)
   })
+
+  it('empty', function () {
+    var ast = read('empty')
+    var m = Module(ast)
+    assert.equal(null, m.type)
+  })
+
+  it('common-exports', function () {
+    var ast = read('common-exports')
+    var m = Module(ast)
+    assert.equal('commonjs', m.type)
+  })
+
+  it('module-exports', function () {
+    var ast = read('module-exports')
+    var m = Module(ast)
+    assert.equal('commonjs', m.type)
+  })
 })
 
 describe('.default', function () {
