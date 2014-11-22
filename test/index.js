@@ -5,7 +5,7 @@ fs = require('fs')
 path = require('path')
 recast = require('recast')
 assert = require('assert')
-esprima = require('esprima')
+esprima = require('esprima-fb')
 
 Module = require('..')
 

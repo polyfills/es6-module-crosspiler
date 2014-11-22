@@ -72,7 +72,7 @@ this module currently only supports transpilation between ES6 module and CommonJ
 
 ```js
 var recast = require('recast')
-var esprima = require('esprima')
+var esprima = require('esprima-fb')
 var Module = require('es6-module-crosspiler')
 
 // parse the code with recast

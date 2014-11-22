@@ -11,9 +11,10 @@
   "license": "MIT",
   "repository": "polyfills/es6-module-crosspiler",
   "dependencies": {
-    "debug": "*",
-    "memorizer": "1",
     "ast-util": "0",
+    "debug": "*",
+    "esprima-fb": "*",
+    "memorizer": "1",
     "recast": "0"
   },
   "devDependencies": {
