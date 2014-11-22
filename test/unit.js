@@ -120,6 +120,16 @@ describe('Build Imports', function () {
     vm.runInThisContext(vmRequire, context)
     vm.runInThisContext(result.code, context)
   })
+
+  it('import-namespace', function () {
+    var ast = read('import-namespace')
+    var m = Module(ast)
+    m.buildRequires()
+    m.removeImports()
+    m.buildReferences()
+    var result = recast.print(m.ast)
+    assert.equal(result.code.trim(), 'var x = require("y");')
+  })
 })
 
 describe('Build Exports', function () {
